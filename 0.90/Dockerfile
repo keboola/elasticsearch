@@ -30,6 +30,10 @@ COPY config /usr/share/elasticsearch/config
 VOLUME /usr/share/elasticsearch/data
 
 COPY docker-entrypoint.sh /
+COPY docker-entrypoint-ecs.sh /
+
+WORKDIR /usr/share/elasticsearch
+RUN bin/plugin install elasticsearch/elasticsearch-cloud-aws/1.16.0
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
